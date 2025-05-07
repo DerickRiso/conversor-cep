@@ -1,5 +1,5 @@
-const form = document.querySelector('form')!;
-const button = document.querySelector('button')!;
+const form = document.querySelector('form')! as HTMLFormElement;
+const button = document.querySelector('button')! as HTMLButtonElement;
 const cepInput = document.getElementById('cep')! as HTMLInputElement;
 
 async function searchAddress(event: Event) {
@@ -11,9 +11,7 @@ async function searchAddress(event: Event) {
     if(dados) {
         console.log(dados);
     }
-    
 
 }
 
-form.addEventListener('submit', searchAddress);
 button.addEventListener('click', searchAddress);

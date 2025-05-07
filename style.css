@@ -1,19 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue-medium: #4682b4;
+    --blue-dark: #1e3a5f;
+    --blue-accent: #5f9ea0;
+}
+
 html {
     font-family: sans-serif;
 }
 
-#map {
-    width: 90%;
-    height: 20rem;
-    border: 1px solid white;
-    margin: 1rem auto;
+header {
+    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    background-color: var(--blue-dark);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-form {
+main {
+    height: 66vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+main section form {
     text-align: center;
-    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+main section form input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem;
+    border: 1px solid var(--blue-medium);
+    border-radius: 4px;
+}
+
+main section form button {
+    padding: 0.5rem 1rem;
+    background-color: var(--blue-accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+main section form button:hover {
+    background-color: var(--blue-medium);
+}
+
+.resultado {
+    border: 2px solid var(--blue-dark);
+    border-radius: 10px;
+    width: 600px;
+    height: 45vh;
+}
+
+.resultado dl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    background-color: var(--blue-dark);
+    color: white;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    header {
+        font-size: 1.5rem;
+    }
+
+    main form {
+        width: 90%;
+    }
+
+    main form input {
+        max-width: 100%;
+    }
 }
