@@ -14,13 +14,22 @@ const cepInput = document.getElementById('cep');
 function searchAddress(event) {
     return __awaiter(this, void 0, void 0, function* () {
         event.preventDefault();
-        const cep = cepInput.value;
+        let cep = cepInput.value;
         const response = yield fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const dados = yield response.json();
         if (dados) {
-            console.log(dados);
+            displayResults(dados);
         }
     });
 }
-form.addEventListener('submit', searchAddress);
+function displayResults(resposta) {
+    const ddList = Array.from(document.querySelectorAll("dd"));
+    const info = Object.values(resposta);
+    ddList[0].textContent = info[11];
+    ddList[1].textContent = info[7];
+    ddList[2].textContent = info[6];
+    ddList[3].textContent = info[1];
+    ddList[4].textContent = info[5];
+    ddList[5].textContent = info[8];
+}
 button.addEventListener('click', searchAddress);
