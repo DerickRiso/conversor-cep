@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const form = document.querySelector('form');
 const button = document.querySelector('button');
 const cepInput = document.getElementById('cep');
+const container = document.getElementById('res');
+const loadScreen = document.getElementById('load');
 function searchAddress(event) {
     return __awaiter(this, void 0, void 0, function* () {
         event.preventDefault();
@@ -23,13 +25,24 @@ function searchAddress(event) {
     });
 }
 function displayResults(resposta) {
+    loadScreen.classList.remove('hidden');
     const ddList = Array.from(document.querySelectorAll("dd"));
-    const info = Object.values(resposta);
-    ddList[0].textContent = info[11];
-    ddList[1].textContent = info[7];
-    ddList[2].textContent = info[6];
-    ddList[3].textContent = info[1];
-    ddList[4].textContent = info[5];
-    ddList[5].textContent = info[8];
+    ddList[0].textContent = resposta.bairro;
+    ddList[1].textContent = resposta.cep;
+    ddList[2].textContent = resposta.ddd;
+    ddList[3].textContent = resposta.estado;
+    ddList[4].textContent = resposta.localidade;
+    ddList[5].textContent = resposta.logradouro;
+    ddList[6].textContent = resposta.regiao;
+    ddList[7].textContent = resposta.uf;
+    for (let i = 0; i < ddList.length; i++) {
+        if (ddList[i].textContent === "") {
+            ddList[i].textContent = "Não disponível";
+        }
+    }
+    setTimeout(() => {
+        loadScreen.classList.add('hidden');
+        container.classList.remove('hidden');
+    }, 1000);
 }
 button.addEventListener('click', searchAddress);

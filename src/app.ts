@@ -1,38 +1,59 @@
 const form = document.querySelector('form')! as HTMLFormElement;
 const button = document.querySelector('button')! as HTMLButtonElement;
 const cepInput = document.getElementById('cep')! as HTMLInputElement;
+const container = document.getElementById('res')! as HTMLDivElement;
+const loadScreen = document.getElementById('load')! as HTMLDivElement;
 
 async function searchAddress(event: Event) {
     event.preventDefault();
     let cep = cepInput.value;
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     const dados = await response.json();
-    
     if(dados) {
         displayResults(dados);
     }
-
 }
 
 type Info = {
+    bairro: string,
+    cep: string,
+    complemento: string,
     ddd: string,
     estado: string,
+    gia: string,
+    ibge: string,
+    localidade: string,
+    logradouro: string,
+    regiao: string,
+    siafi: string
     uf: string,
-    bairro: string,
-    localidade: string, 
-    regiao: string
 }
 
 function displayResults(resposta: Info) {
-    const ddList: HTMLElement[] = Array.from(document.querySelectorAll("dd"));
-    const info = Object.values(resposta);
+    loadScreen.classList.remove('hidden');
 
-    ddList[0].textContent = info[11];
-    ddList[1].textContent = info[7];
-    ddList[2].textContent = info[6];
-    ddList[3].textContent = info[1];
-    ddList[4].textContent = info[5];
-    ddList[5].textContent = info[8];
+    const ddList: HTMLElement[] = Array.from(document.querySelectorAll("dd"));
+
+    ddList[0].textContent = resposta.bairro;
+    ddList[1].textContent = resposta.cep;
+    ddList[2].textContent = resposta.ddd;
+    ddList[3].textContent = resposta.estado;
+    ddList[4].textContent = resposta.localidade;
+    ddList[5].textContent = resposta.logradouro;
+    ddList[6].textContent = resposta.regiao;
+    ddList[7].textContent = resposta.uf;
+    
+    for(let i=0; i<ddList.length; i++) {
+        if(ddList[i].textContent === "") {
+            ddList[i].textContent = "Não disponível";
+        }
+    }
+
+    setTimeout(() => {
+        loadScreen.classList.add('hidden');
+        container.classList.remove('hidden');
+    }, 1000);
+
 }
 
 button.addEventListener('click', searchAddress);
