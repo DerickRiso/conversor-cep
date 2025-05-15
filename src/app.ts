@@ -5,13 +5,32 @@ const container = document.getElementById('res')! as HTMLDivElement;
 const loadScreen = document.getElementById('load')! as HTMLDivElement;
 
 async function searchAddress(event: Event) {
-    event.preventDefault();
     let cep = cepInput.value;
+    event.preventDefault();
+    let flag = checkExceptions(cep);
+    if(!flag) {
+        return;
+    }
     const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     const dados = await response.json();
+    
     if(dados) {
         displayResults(dados);
     }
+}
+
+function checkExceptions(cep: string) {
+    const regex = /^\d{5}-?\d{3}$/;
+    if (cep === "") {
+        alert("Digite um cep para descobrir um endereço.");
+        return false;
+    }
+    
+    if (!regex.test(cep)) {
+        alert("Insira um cep válido.");
+        return false;
+    }
+    return true;
 }
 
 type Info = {

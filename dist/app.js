@@ -15,14 +15,30 @@ const container = document.getElementById('res');
 const loadScreen = document.getElementById('load');
 function searchAddress(event) {
     return __awaiter(this, void 0, void 0, function* () {
-        event.preventDefault();
         let cep = cepInput.value;
+        event.preventDefault();
+        let flag = checkExceptions(cep);
+        if (!flag) {
+            return;
+        }
         const response = yield fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const dados = yield response.json();
         if (dados) {
             displayResults(dados);
         }
     });
+}
+function checkExceptions(cep) {
+    const regex = /^\d{5}-?\d{3}$/;
+    if (cep === "") {
+        alert("Digite um cep para descobrir um endereço.");
+        return false;
+    }
+    if (!regex.test(cep)) {
+        alert("Insira um cep válido.");
+        return false;
+    }
+    return true;
 }
 function displayResults(resposta) {
     loadScreen.classList.remove('hidden');
