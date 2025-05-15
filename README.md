@@ -9,7 +9,7 @@ O link para o site está ao lado, fique à vontade para testá-lo.
 ## Como usar
 
 1. Clone o repositório
-2. Instale as dependências (se houver)
+2. Instale as dependências
 3. Abra o `index.html` no navegador
 
 ## Tecnologias
