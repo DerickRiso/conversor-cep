@@ -10,12 +10,17 @@
     --blue-accent: #5f9ea0;
 }
 
-html {
+html, body {
     font-family: sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 header, footer {
-    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,16 +28,35 @@ header, footer {
     color: white;
     font: 'sans-serif' 2rem bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+header {
+    height: 17vh;
 }
 
 main {
-    height: 66vh;
-    padding: 2rem;
+    height: 75vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+}
+
+main #endereco {
+    border: solid 1px black;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40vw;
+    height: 80%;
+}
+
+main #endereco p {
+    text-align: center;
 }
 
 main section form {
@@ -44,7 +68,6 @@ main section form {
     background-color: white;
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 main section form input {
@@ -62,7 +85,7 @@ main section form button {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: 0.3s;
 }
 
 main section form button:hover {
@@ -73,10 +96,8 @@ main section form button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid var(--blue-dark);
-    border-radius: 10px;
-    width: 500px;
-    height: 300px;
+    width: 40vw;
+    height:80%;
 }
 
 .resultado dl {
@@ -89,16 +110,18 @@ main section form button:hover {
 }
 
 .resultado dl dd {
-    text-align: center;
+    text-align: right
 }
 
 footer {
-    height: 18vh;
+    height: 8vh;
+    width: 100%;
 }
 
 footer a {
     color: white;
     text-decoration: none;
+    text-align: center;
 }
 
 .hidden {
@@ -128,9 +151,41 @@ footer a {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 450px) {
     header {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        text-align: center;
+        height: 12vh;
+    }
+
+    header h1 {
+        width: 70vw;
+    }
+
+    main {
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 6vh;
+        height: 75vh;
+        width: 100%;
+    }
+
+    main #endereco {
+        width: 90vw;
+        order: 1;
+    }
+
+    main #endereco p {
+        font-size: 1.2em;
+    }
+
+    .resultado {
+        width: 90vw;
+        order: 0;
+    }
+
+    dl dd, dl dt {
+        font-size: 1.3em;
     }
 
     main form {
@@ -140,4 +195,5 @@ footer a {
     main form input {
         max-width: 100%;
     }
+
 }
