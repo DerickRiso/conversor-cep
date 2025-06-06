@@ -3,7 +3,7 @@ const cepInput = document.getElementById('cep')! as HTMLInputElement;
 const container = document.getElementById('res')! as HTMLDivElement;
 const loadScreen = document.getElementById('load')! as HTMLDivElement;
 
-async function searchAddress(event: Event) {
+export async function searchAddress(event: Event) {
     let cep = cepInput.value;
     event.preventDefault();
     let flag = checkExceptions(cep);
@@ -47,7 +47,7 @@ type Info = {
     uf: string,
 }
 
-function displayResults(resposta: Info) {
+export function displayResults(resposta: Info) {
     loadScreen.classList.remove('hidden');
 
     const ddList: HTMLElement[] = Array.from(document.querySelectorAll("dd"));
@@ -74,4 +74,4 @@ function displayResults(resposta: Info) {
 
 }
 
-button.addEventListener('click', searchAddress);
+//button.addEventListener('click', searchAddress);
