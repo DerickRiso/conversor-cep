@@ -1,4 +1,3 @@
-const form = document.querySelector('form')! as HTMLFormElement;
 const button = document.querySelector('button')! as HTMLButtonElement;
 const cepInput = document.getElementById('cep')! as HTMLInputElement;
 const container = document.getElementById('res')! as HTMLDivElement;
@@ -19,7 +18,7 @@ async function searchAddress(event: Event) {
     }
 }
 
-function checkExceptions(cep: string) {
+export function checkExceptions(cep: string) {
     const regex = /^\d{5}-?\d{3}$/;
     if (cep === "") {
         alert("Digite um cep para descobrir um endereço.");

@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const form = document.querySelector('form');
 const button = document.querySelector('button');
 const cepInput = document.getElementById('cep');
 const container = document.getElementById('res');
